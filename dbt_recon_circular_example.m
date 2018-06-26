@@ -14,6 +14,12 @@ load example_data/proj_noi.mat; %the variable is 'proj_noi'.
 load example_data/g_noi.mat; %the variable is 'g_noi'.
 g=g_noi;
 proj=proj_noi;
+
+% #### If Breast is in the right side ####
+% g = flip(rot90(g,2),3);
+% proj = flip(rot90(proj,2),3);
+
+
 %==================================
 %User Defines the scanner geometry
 %==================================
