@@ -52,7 +52,7 @@ nt=arg.cg.nt;%arg.nn(2);
 nd=arg.nd;
 
 img=zeros(nmask,1);
-denom = zeros(1,nmask);
+%denom = zeros(1,nmask);
 y=zeros(ns,nt);
 for i=1:nview
     p=proj(:,:,i);
@@ -70,13 +70,17 @@ for i=1:nview
                      %normal object value.
       y=zeros(size(p));
       y(lmask)=p(lmask)./l(lmask);
+      clear lmask l
 %     y(isnan(y))=0;
      imgi = G'*y(:);
+     clear y
      denomi=sum(G);
     
      imgj=imgi./denomi(:);
+     clear denomi imgi
      imgj(isnan(imgj))=0;
      img=img+imgj;
+     clear imgj
 end
 %img=embed(img./denom(:),arg.mask);
 img=embed(img/nview,arg.ig.mask);

@@ -72,6 +72,7 @@ else
 end
 
 x=permute(x0,[1 3 2]);
+clear x0
 upd = zeros(size(x));
 for iter=1:niter
     iter
@@ -93,6 +94,7 @@ for iter=1:niter
         end
         ydif = y-proj(:,:,i);
         imgi = imgi + reshape(G'*ydif(:), size(x));
+        clear ydif
         denom = denom + reshape(G'*(drr(:).*y(:)), size(x));
         %mse = sum(ydif(:).^2) + mse;
         ll = ll + sum(sum(y + proj(:,:,i).*drr));

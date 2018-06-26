@@ -73,6 +73,7 @@ end
 y=zeros(ns,nt);
 
 x=permute(x0,[1 3 2]);
+clear x0
 for iter=1:niter
     iter
     for i=1:nview
@@ -91,12 +92,16 @@ for iter=1:niter
                      %normal object value.
          pdif=proj(:,:,i)-G*x;
          y(lmask)=pdif(lmask)./l(lmask);
+         clear l lmask
     %     y(isnan(y))=0;
          imgi = G'*y(:);
+         clear y
          denomi=sum(G);
          imgj=imgi./denomi(:);
+         clear imgi
          imgj(isnan(imgj))=0;
-         x=x+stepsize*reshape(imgj,size(x));            
+         x=x+stepsize*reshape(imgj,size(x)); 
+         clear imgj
     end
     x(x<0)=0;
     %calculate the cost
